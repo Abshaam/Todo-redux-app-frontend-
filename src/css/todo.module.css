@@ -1,0 +1,29 @@
+ 
+ .todo_form{
+     border-radius: 8px;
+     padding:  16px;
+     text-align: center;
+     box-shadow: 0 4px 8px grey;
+     margin: 1.5rem 30rem;
+ }
+
+ .todo_input{
+     font-style: 16px;
+     padding:  8px;
+     border: none;
+     border-radius: 8px;
+     border-bottom: 2px solid rosybrown;
+     outline: none;
+     width: 30%;
+ }
+
+.todo_button{
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    margin-left: 8px;
+    padding: 8px;
+    background-color: aqua;
+}
+
+ 
