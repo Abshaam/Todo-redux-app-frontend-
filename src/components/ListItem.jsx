@@ -1,7 +1,7 @@
 
 // import {styled, css} from 'styled-components'
 import styled, { css } from 'styled-components';
-// import formStyle from '../css/todo.module.css'
+import formStyle from '../css/todo.module.css'
 // import css from 'styled-components';
 import { changeStatus } from '../store/thunk';
 import { removeTodo } from '../store/thunk';
@@ -14,9 +14,9 @@ const Header = styled.div`
 //    justify-content: space-between;
 //    border-radius: 8px;
 //    box-shadow: 0, 4px, 8px, grey;
-//    margin: 0, 30rem;
+   margin: 0, 30rem;
 //    position: relative;
-//    padding: 6px;
+   padding: 6px;
     `;
 
 
@@ -63,7 +63,7 @@ const Button = styled.button`
 const ListItem = ({ task, amend, deleteTodo }) => {
     return (
 
-        <>
+        <div className={formStyle.wrap}>
             <Header>
                 <Card>
                     <Card.Body>
@@ -129,7 +129,7 @@ const ListItem = ({ task, amend, deleteTodo }) => {
 
             </BtnContainer> */}
             </Header>
-        </>
+        </div>
 
 
     )

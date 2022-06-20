@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { createTodo } from '../store/thunk';
 import { connect } from 'react-redux';
 import  pic1  from '../images/flower.jpg'
+import Image from 'react-bootstrap/Image'
 
 
 const TodoForm = ({ Alltodos, content}) =>{
@@ -43,9 +44,9 @@ const TodoForm = ({ Alltodos, content}) =>{
             
         </div>
 
-        <div>
-            <img src= { pic1 } alt="" />
-        </div>
+        {/* <div> */}
+            <Image src= { pic1 } alt="" />
+        {/* </div> */}
         </>
     )
 }
