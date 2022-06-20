@@ -68,6 +68,7 @@ export const todosSuccess = (todos) => ({
 export const TODOS_FAILURE = "TODOS_FAILURE"
 
 // action creator
-export const todosFailure = () => ({
+export const todosFailure = (errorMessage) => ({
     type: TODOS_FAILURE,
+    payload: { errorMessage }
  })

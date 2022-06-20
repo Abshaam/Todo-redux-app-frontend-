@@ -2,11 +2,15 @@ import formStyle from '../css/todo.module.css'
 import { useState } from 'react';
 import { createTodo } from '../store/thunk';
 import { connect } from 'react-redux';
+import  pic1  from '../images/flower.jpg'
 
 
 const TodoForm = ({ Alltodos, content}) =>{
     const [inputValue, setInputValue] = useState('')
     return(
+
+        <>
+
         <div className={formStyle.todo_form}>
             <input type="text"
              className={formStyle.todo_input}
@@ -35,12 +39,19 @@ const TodoForm = ({ Alltodos, content}) =>{
             }}
             > Add Task
             </button>
+
+            
         </div>
+
+        <div>
+            <img src= { pic1 } alt="" />
+        </div>
+        </>
     )
 }
 
 const mapStateToProps = (state) => ({
-    Alltodos: state.todos,
+    Alltodos: state.todos.data
 });
 
 const mapDispatchToProps = (dispatch) => ({

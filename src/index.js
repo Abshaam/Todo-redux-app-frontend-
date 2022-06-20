@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { configureStore } from './store';
 import axios from 'axios';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 export const store = configureStore();
 
 

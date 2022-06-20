@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { addTodo, fetchTodos, deleteTodo, amendStatus } from "../action";
+import { addTodo, fetchTodos, deleteTodo, amendStatus, todosLoading, todosSuccess, todosFailure } from "../action";
 
 
 
@@ -28,17 +28,21 @@ export const createTodo = (text) => async (dispatch, getState) => {
 // thunk for fetching a todos
 export const getTodos = () => async (dispatch, getState) => {
     try {
-    const response = await axios.get('http://localhost:8000/fetch');
+        dispatch(todosLoading());
+    const response = await axios.get('http://localhost:8000/delay-fetch');
 
         const { data } = response
         dispatch(fetchTodos(data));
+
+        dispatch(todosSuccess());
 
         console.log(data);
         console.log(response);
         // console.log('this is the state', getState());
 
     } catch (error) {
-        console.log(error.response.data);
+        dispatch(todosFailure());
+        console.log(error.response.data.msg);
     }
 }
 
@@ -50,6 +54,8 @@ export const removeTodo = id => async dispatch => {
 
         // const { text } = response
         dispatch(deleteTodo(id));
+
+        console.log(response);
 
         // console.log('this is the state', getState());
 
