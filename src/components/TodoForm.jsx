@@ -2,51 +2,69 @@ import formStyle from '../css/todo.module.css'
 import { useState } from 'react';
 import { createTodo } from '../store/thunk';
 import { connect } from 'react-redux';
-import  pic1  from '../images/flower.jpg'
-import Image from 'react-bootstrap/Image'
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 
 
-const TodoForm = ({ Alltodos, content}) =>{
-    const [inputValue, setInputValue] = useState('')
-    return(
+
+
+const TodoForm = ({ Alltodos, content }) => {
+    const [inputValue, setInputValue] = useState('');
+    return (
 
         <>
 
-        <div className={formStyle.todo_form}>
-            <input type="text"
-             className={formStyle.todo_input}
-             value = { inputValue } 
-             onChange = {(e) => setInputValue(e.target.value)}
-              />
+            <Container
+                // className={formStyle.todo_form}
+                className='mt-5'
+                fluid='lg'
 
-            {/* button */}
-            <button
-             className={formStyle.todo_button}
+            >
+                <Row>
+                    <Col>
+                        <Form.Group className="mb-3" controlId="formBasicEmail"
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
 
-            //  run this at a button click, check to find a duplicate todo
-            onClick= {() =>{
-                const duplicate = Alltodos.some(tod => tod.text === inputValue);
-                console.log(duplicate);
 
-                // if no duplicate, run the send the request and empty the input field
-                if(!duplicate) {
-                    content(inputValue);
-                    setInputValue('')   
-                
-                    // run this if no duplicate found
-                } else {
-                    alert(`${inputValue} has being added`)
-                }
-            }}
-            > Add Task
-            </button>
+                        >
+                            <Form.Control type="text" placeholder=" Type a todo" />
 
-            
-        </div>
+                        </Form.Group>
 
-        {/* <div> */}
-            <Image src= { pic1 } alt="" />
-        {/* </div> */}
+                        {/* button */}
+                        <button
+                            className={formStyle.todo_button}
+
+                            //  run this at a button click, check to find a duplicate todo
+                            onClick={() => {
+                                const duplicate = Alltodos.some(tod => tod.text === inputValue);
+                                console.log(duplicate);
+
+                               
+
+                                // if no duplicate, run the send the request and empty the input field
+                                if (!duplicate) {
+                                    content(inputValue);
+
+                                    setInputValue('');
+                                    console.log(inputValue);
+
+                                    // run this if no duplicate found
+                                } else {
+                                    alert(`${inputValue} has being added`)
+                                }
+                            }}
+                        > Add Task
+                        </button>
+
+                    </Col>
+                </Row>
+            </Container>
+
+
         </>
     )
 }
@@ -59,6 +77,5 @@ const mapDispatchToProps = (dispatch) => ({
     content: (text) => dispatch(createTodo(text))
 });
 
-// store.subscribe(() => setTodos(store.getState()))
 
-export default connect(mapStateToProps, mapDispatchToProps) (TodoForm);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoForm);

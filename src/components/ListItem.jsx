@@ -39,7 +39,7 @@ const Button = styled.button`
       ${(props) =>
         props.completed &&
         css`
-        background-color: blue;
+        background-color: green;
         color: #fff;
         `}
 
@@ -73,7 +73,9 @@ const ListItem = ({ task, amend, deleteTodo }) => {
                                 <Card.Title>TODO</Card.Title>
                                 <Card.Text>
                                     <Card>
-                                        <Card.Body>{task.text}</Card.Body>
+                                        <Card.Body>
+                                            {task.text}
+                                            </Card.Body>
                                     </Card>
                                 </Card.Text>
                                 <BtnContainer>
@@ -81,11 +83,11 @@ const ListItem = ({ task, amend, deleteTodo }) => {
                                         task.isCompleted ? (
                                             <Button completed
                                                 onClick={() => amend(task.id)}>
-                                                incomplete
+                                                complete
                                             </Button>
                                         ) : (
                                             <Button incompleted onClick={() => amend(task.id)}>
-                                                complete
+                                                incomplete
                                             </Button>
                                         )}
 
@@ -95,7 +97,7 @@ const ListItem = ({ task, amend, deleteTodo }) => {
                                     </Button>
 
                                 </BtnContainer>
-                                {/* <Button variant="primary">Go somewhere</Button> */}
+                               
                             </Card.Body>
                         </Card>
                     </Card.Body>
@@ -107,7 +109,7 @@ const ListItem = ({ task, amend, deleteTodo }) => {
            </Card> */}
 
 
-                <h3>  </h3>
+               
                 {/* <BtnContainer>
 
                 {

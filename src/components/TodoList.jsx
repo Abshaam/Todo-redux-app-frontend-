@@ -7,6 +7,8 @@ import { getTodos } from "../store/thunk";
 import NavScrollExample from "./Navbar";
 import styleup from '../css/todo.module.css';
 import formStyle from '../css/todo.module.css';
+
+
 // import styled from "styled-components"
 
 
@@ -27,19 +29,24 @@ const TodoList = ({ todos, loadAll, loadingStarts }) => {
             {/* input form to add a todo */}
             <TodoForm />
 
+            <div className= {formStyle.wrap}>
+            {/* //  " grid grid-cols-4 md: grid-cols-4"> */}
+
             { loadingStarts ? (
-                <h3> .....loading </h3>
+                <h3 className={ formStyle.load }> .....loading </h3>
             ) : (
                 // todos 
+              
              
                 todos.map((todo, key) => (
-                    <div className= {formStyle.wrap}>
+                   
                     <ListItem task= {todo} key={key} />
-                    </div>
+            
                 ))
                 
                 
             )}
+            </div>
 
         </div>
         </div>
