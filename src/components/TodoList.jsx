@@ -7,18 +7,22 @@ import { getTodos } from "../store/thunk";
 import NavScrollExample from "./Navbar";
 import styleup from '../css/todo.module.css';
 import formStyle from '../css/todo.module.css';
+import Spinner from 'react-bootstrap/Spinner'
+import { getTodosData,  getTodosLoading, completeTodos, IncompletedTodos } from "../store/selectors";
 
 
 // import styled from "styled-components"
 
 
 
-const TodoList = ({ todos, loadAll, loadingStarts }) => {
+const TodoList = ({ todos, loadAll, loadingStarts, completeTodos, IncompletedTodos }) => {
 
     // loadAll gets called when the page sets in
     useEffect(() => {
         loadAll()
     }, [loadAll])
+
+    const spinner = <Spinner animation = 'border' style= {{marginLeft: '50em'}}></Spinner>
     
     return (
         <>
@@ -33,16 +37,38 @@ const TodoList = ({ todos, loadAll, loadingStarts }) => {
             {/* //  " grid grid-cols-4 md: grid-cols-4"> */}
 
             { loadingStarts ? (
-                <h3 className={ formStyle.load }> .....loading </h3>
+                // <h3 className={ formStyle.load }> .....loading </h3>
+                spinner
             ) : (
-                // todos 
+
+                <>
+                <h3 style={{textAlign: "center"}}> Completed Todos: </h3>
+                  {completeTodos.map((todo, key) => (
+                   
+                   <ListItem task= {todo} key={key} />
+
+                  ))}
+
+               <h3 style={{textAlign: "center"}}> InCompleted Todos: </h3>
+                  {IncompletedTodos.map((todo, key) => (
+                   
+                   <ListItem task= {todo} key={key} />
+
+                  ))}
+
+               </>
+                  
+            //    }
+                
+               
+               
               
              
-                todos.map((todo, key) => (
+                // todos.map((todo, key) => (
                    
-                    <ListItem task= {todo} key={key} />
+                //     <ListItem task= {todo} key={key} />
             
-                ))
+                // ))
                 
                 
             )}
@@ -55,8 +81,10 @@ const TodoList = ({ todos, loadAll, loadingStarts }) => {
 };
 
 const mapStateToProps = (state) => ({
-    todos: state.todos.data,
-    loadingStarts: state.todos.loading
+    todos: getTodosData(state),
+    loadingStarts: getTodosLoading(state),
+    completeTodos: completeTodos(state),
+    IncompletedTodos: IncompletedTodos(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

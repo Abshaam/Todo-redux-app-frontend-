@@ -2,7 +2,7 @@ import formStyle from '../css/todo.module.css'
 import { useState } from 'react';
 import { createTodo } from '../store/thunk';
 import { connect } from 'react-redux';
-import Form from 'react-bootstrap/Form';
+// import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -11,7 +11,7 @@ import Container from 'react-bootstrap/Container';
 
 
 const TodoForm = ({ Alltodos, content }) => {
-    const [inputValue, setInputValue] = useState('');
+    const [input, setInput] = useState('');
     return (
 
         <>
@@ -24,15 +24,16 @@ const TodoForm = ({ Alltodos, content }) => {
             >
                 <Row>
                     <Col>
-                        <Form.Group className="mb-3" controlId="formBasicEmail"
-                            value={inputValue}
-                            onChange={(e) => setInputValue(e.target.value)}
+                        <input className={formStyle.todo_input} type="text" 
+                        placeholder=" Type a todo"
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
 
 
-                        >
-                            <Form.Control type="text" placeholder=" Type a todo" />
+                        input/>
+                           
 
-                        </Form.Group>
+                        
 
                         {/* button */}
                         <button
@@ -40,23 +41,33 @@ const TodoForm = ({ Alltodos, content }) => {
 
                             //  run this at a button click, check to find a duplicate todo
                             onClick={() => {
-                                const duplicate = Alltodos.some(tod => tod.text === inputValue);
+                                const duplicate = Alltodos.some(tod => tod.text === input);
                                 console.log(duplicate);
 
+                                // content(inputValue);
+
+                                // setInputValue('yes');
                                
 
                                 // if no duplicate, run the send the request and empty the input field
                                 if (!duplicate) {
-                                    content(inputValue);
+                                    
 
-                                    setInputValue('');
-                                    console.log(inputValue);
+                                    content(input);
+
+                                    setInput(' ');
+
+                                  
+
+                                   
+                                    console.log(input);
 
                                     // run this if no duplicate found
                                 } else {
-                                    alert(`${inputValue} has being added`)
+                                    alert(`${input} has being added`)
                                 }
                             }}
+                           
                         > Add Task
                         </button>
 

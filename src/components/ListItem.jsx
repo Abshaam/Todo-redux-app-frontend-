@@ -103,33 +103,6 @@ const ListItem = ({ task, amend, deleteTodo }) => {
                     </Card.Body>
                 </Card>
 
-
-                {/* <Card>
-            <Card.Body>{ task.text}</Card.Body>
-           </Card> */}
-
-
-               
-                {/* <BtnContainer>
-
-                {
-                task.isCompleted? (
-                    <Button completed 
-                    onClick ={() => amend(task.id)}>
-                         incomplete
-                    </Button>
-                ) : (
-                    <Button incompleted onClick ={() => amend(task.id)}>
-                         complete
-                    </Button> 
-                )}
-                
-                <Button delete
-                onClick={() => deleteTodo(task.id)} > 
-                Delete 
-                </Button>
-
-            </BtnContainer> */}
             </Header>
         </div>
 
